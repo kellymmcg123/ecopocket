@@ -8,11 +8,17 @@ database = mysql.connector.connect(
 )
 
 cursor = database.cursor()
+# Create new table 'test'
+cursor.execute("CREATE TABLE test (name VARCHAR(255), number INT)")
 
-#cursor.execute("INSERT INTO location (name, address) VALUES ('Aldi', 'Dublin');")
-#cursor.execute("UPDATE users SET email = 'mary11@gmail.com' WHERE email = 'mary1@email.com'")
-cursor.execute("CREATE TABLE test (name VARCHAR(255), number INT) "
-               "INSERT INTO test (name, number) VALUES ('Max', 3);")
+# Add row to new table 'test'
+cursor.execute("INSERT INTO test (name, number) VALUES ('Max', 3);")
+
+# Change already existing data
+cursor.execute("UPDATE users SET email = 'mary123@gmail.com' WHERE email = 'mary11@gmail.com'")
+
+# Insert new row into existing table
+cursor.execute("INSERT INTO location (name, address) VALUES ('SuperValu', 'Ballincollig')")
 
 database.commit()
 
